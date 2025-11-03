@@ -10,9 +10,14 @@ For example, you can set the different
 ### Packages
 To use this service, you need to have the following packages installed:
 
-**archlinux**
+**Arch Linux**
 ```bash
 sudo pacman -Syyu python3 python-dbus python-gobject python-watchdog
+```
+
+**Debian**
+```bash
+sudo apt install python3 python3-dbus python3-gi python3-watchdog
 ```
 
 ### Bluetooth setup
