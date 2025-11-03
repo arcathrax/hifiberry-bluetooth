@@ -7,9 +7,16 @@ For example, you can set the different
 [bluetooth agent capability](https://github.com/arcathrax/hbos-bluetooth-service/blob/main/docs/config.md#capability).
 
 ## Requirements
+### Packages
 To use this service, you need to have the following packages installed:
 
 **archlinux**
 ```bash
 sudo pacman -Syyu python3 python-dbus python-gobject python-watchdog
 ```
+
+### Bluetooth setup
+You also need to have the bluetooth set up correctly.
+Either do this by yourself or if you are using a RPi,
+with a [HiFiBerry](https://www.hifiberry.com/) sound card,
+you can use [this guide](https://github.com/arcathrax/hbos-bluetooth-service/blob/main/docs/setting_up_bluetooth.md).
