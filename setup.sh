@@ -7,7 +7,6 @@ then
 fi
 
 cp -r . /opt/hbos-bluetooth-service
-cp ./hbos-bluetooth.service 
 
 rm /etc/systemd/system/hbos-bluetooth.service
-cp hbos-bluetooth.service /etc/systemd/system
+cp ./hbos-bluetooth.service /etc/systemd/system
