@@ -3,7 +3,7 @@ Description=HBOS Bluetooth Service
 After=bluetooth.service
 
 [Service]
-ExecStart=/usr/bin/python3 /opt/hbos-bluetooth-service/src/main.py
+ExecStart=/usr/bin/hbos-bluetooth
 Restart=always
 User=root
 
