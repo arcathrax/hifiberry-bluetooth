@@ -1,1 +1,10 @@
 __pycache__
+*.tar.gz
+deb_dist/
+hbos_bluetooth_service.egg-info/
+PACKAGEFILE
+configurator/__pycache__
+__pycache__/
+build/*
+dist/*
+
