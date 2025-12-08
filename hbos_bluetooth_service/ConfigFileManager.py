@@ -44,6 +44,8 @@ class ConfigFileManager:
                 f.write("\n")
                 f.write("pairable=True\n")
                 f.write("pairable_timeout=0\n")
+                f.write("\n")
+                f.write("passkey=000000\n")
             self.logger.info(f"Created config file: {self.config_path}")
 
         except Exception as e:
@@ -60,9 +62,34 @@ class ConfigFileManager:
 
         self.pairable = self.config.getboolean("Bluetooth", "pairable", fallback="True")
         self.pairable_timeout = self.config.getint("Bluetooth", "pairable_timeout", fallback="0")
+        
+        self.passkey = self.config.getint("Bluetooth", "passkey", fallback="000000")
 
         self.logger.info(f"Bluetooth capability: {self.capability}")
         self.logger.info(f"Discoverable: {self.discoverable}")
         self.logger.info(f"Discoverable timeout: {self.discoverable_timeout}")
         self.logger.info(f"Pairable: {self.pairable}")
         self.logger.info(f"Pairable timeout: {self.pairable_timeout}")
+        self.logger.info(f"Passkey: {self.passkey}")
+
+    def set_config_value(self, section, key, value):
+        try:
+            if not self.config.has_section(section):
+                self.config.add_section(section)
+
+            self.config.set(section, key, value)
+
+            # Save changes to file
+            with open(self.config_file, 'w') as configfile:
+                self.config.write(configfile)
+
+            self.logger.info(f"Set {section}.{key} = {value}")
+
+        except Exception as e:
+            self.logger.error(f"Error setting config value: {e}")
+            self.logger.info(f"capability: {self.capability}")
+            self.logger.info(f"discoverable: {self.discoverable}")
+            self.logger.info(f"discoverable_timeout: {self.discoverable_timeout}")
+            self.logger.info(f"pairable: {self.pairable}")
+            self.logger.info(f"pairable_timeout: {self.pairable_timeout}")
+            self.logger.info(f"Passkey: {self.passkey}")
