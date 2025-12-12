@@ -112,7 +112,7 @@ class Agent(dbus.service.Object):
         self.set_trusted(device)
 
         # Polling the local API
-        timeout = 120  # seconds
+        timeout = 60  # seconds
         interval = 0.5  # seconds
         elapsed = 0
 
