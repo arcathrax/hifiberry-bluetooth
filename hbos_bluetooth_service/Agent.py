@@ -117,6 +117,11 @@ class Agent(dbus.service.Object):
         elapsed = 0
 
         passkey = None
+
+        modal_url = "http://localhost:1081/api/v1/bluetooth/modal"
+        myobj = {"modal": "true"}
+        x = requests.post(modal_url, json = myobj)
+
         while elapsed < timeout:
             try:
                 response = requests.get("http://localhost:1081/api/v1/bluetooth/passkey")
