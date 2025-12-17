@@ -24,6 +24,15 @@ bus = dbus.SystemBus()
 mainloop = GLib.MainLoop()
 
 
+def properties_changed(interface, changed, invalidated):
+    if interface == Adapter.ADAPTER_IFACE and "Discoverable" in changed:
+        if not changed["Discoverable"]:
+            config_file_manager.logger.info(
+                "Discoverable timed out, setting config value to False"
+            )
+            config_file_manager.set_config_value("Bluetooth", "discoverable", "False")
+
+
 def main():
     # Initialize agent and agent manager
     agent = Agent(bus, AGENT_PATH)
@@ -34,6 +43,14 @@ def main():
 
     # Initialize Adapter
     adapter = Adapter()
+
+    bus.add_signal_receiver(
+        properties_changed,
+        dbus_interface=dbus.PROPERTIES_IFACE,
+        signal_name="PropertiesChanged",
+        arg0=Adapter.ADAPTER_IFACE,
+        path_keyword="path",
+    )
 
     # Start config watcher
     observer = Observer()
